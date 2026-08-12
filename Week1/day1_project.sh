@@ -1,21 +1,24 @@
 #Day 1 practice users,groups,permissions
 
 #create users
-useraddd alice
-useradd bob
-useradd charlie
+sudo useraddd alice
+sudo useradd bob
+sudo useradd charlie
 
 #Create group and add alice and bob
-groupadd devteam
-usermod -aG devteam alice
-usermod -aG devteam bob
+sudo groupadd devteam
+sudo usermod -aG devteam alice
+sudo usermod -aG devteam bob
 
 #Create a Shared directory with correct permissions
 mkdir /shared
+sudo chown root:devteam /shared
 chmod 770 /shared
 
 #Verify
 
 group alice
 group charlie
+
+#verify permissions
 ls -la /shared
