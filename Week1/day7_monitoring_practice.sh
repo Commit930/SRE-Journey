@@ -28,3 +28,22 @@ check_memory () {
 
 
 }
+
+FAIL=0
+check_cpu () {
+    local cpu_idle
+    local cpu_used
+    
+    cpu_idle=$(top -bn1 | grep "Cpu(s)" | awk '{print $8}' | cut -d'.' -f1)
+    cpu_used=$((100 - cpu_idle))
+    if [ $cpu_used -gt 80 ]; then
+    echo "WARN: CPU Usage is at ${cpu_used}%"
+    FAIL=1
+    else 
+    echo "OK: CPU Usage is at ${cpu_used}%"
+    fi
+
+
+}
+
+check_cpu
